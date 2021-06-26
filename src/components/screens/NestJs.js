@@ -1,11 +1,15 @@
-import ReactMarkdown from "react-markdown";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import styled from "styled-components";
-import { MDContainer } from "./shared";
-import { ReactComponent as NestJsIcon } from "../../assets/nestjs.svg";
+import MDEditor from "@uiw/react-md-editor";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ReactComponent as NestJsIcon } from "../../assets/nestjs.svg";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
+
+const Container = styled.div`
+  background-color: #212121;
+  width: 100%;
+  height: 100%;
+  color: white;
+`;
 
 const Wrapper = styled.div`
   padding: 10px 50px;
@@ -35,40 +39,17 @@ const Close = styled(FontAwesomeIcon)`
   cursor: pointer;
 `;
 
-const components = {
-  code({ node, inline, className, children, ...props }) {
-    const match = /language-(\w+)/.exec(className || "");
-    return !inline && match ? (
-      <SyntaxHighlighter
-        style={vscDarkPlus}
-        language={match[1]}
-        PreTag="div"
-        children={String(children).replace(/\n$/, "")}
-        {...props}
-      />
-    ) : (
-      <code className={className} {...props}>
-        {children}
-      </code>
-    );
-  },
-};
-
-const markdown = `
-# NestJs   
-
-## NestJs Docs
-
-### NestJs 공식 홈페이지 Docs [![NestJs](https://img.shields.io/badge/-NestJs-E0234E?style=flat&logo=NestJs&logoColor=white "NestJs")](https://docs.nestjs.com/)
-### NestJs 한국어 공식 Docs [![NestJs](https://img.shields.io/badge/-NestJsKR-E0234E?style=flat&logo=NestJs&logoColor=white "NestJsKR")](https://docs.nestjs.kr/)
-
-
+const source = `
+# NestJs  
+NestJs 공식 홈페이지 Docs : [![NestJs](https://img.shields.io/badge/-NestJs-E0234E?style=flat&logo=NestJs&logoColor=white "NestJs")](https://docs.nestjs.com/)
+<br/>
+NestJs 한국어 공식 Docs : [![NestJs](https://img.shields.io/badge/-NestJsKR-E0234E?style=flat&logo=NestJs&logoColor=white "NestJsKR")](https://docs.nestjs.kr/)
 
 `;
 
 function NestJs({ xclick }) {
   return (
-    <MDContainer>
+    <Container>
       <TopTap>
         <TopTapItem>
           <NestJsIcon width={16} height={16} style={{ marginLeft: 10 }} />
@@ -77,12 +58,9 @@ function NestJs({ xclick }) {
         </TopTapItem>
       </TopTap>
       <Wrapper>
-        <ReactMarkdown
-          children={markdown}
-          components={components}
-        ></ReactMarkdown>
+        <MDEditor.Markdown source={source} />
       </Wrapper>
-    </MDContainer>
+    </Container>
   );
 }
 
