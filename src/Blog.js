@@ -96,7 +96,7 @@ function Blog() {
         ) : fileSelect === 2 ? (
           <Typescript></Typescript>
         ) : fileSelect === 3 ? (
-          <NestJs></NestJs>
+          <NestJs xclick={() => setFileSelect(0)}></NestJs>
         ) : fileSelect === 4 ? (
           <React></React>
         ) : fileSelect === 5 ? (

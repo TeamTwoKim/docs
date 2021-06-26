@@ -16,7 +16,7 @@ import { ReactComponent as Graphql } from "../assets/graphql.svg";
 import { ReactComponent as Typeorm } from "../assets/typeorm.svg";
 
 const Container = styled.div`
-  width: 250px;
+  width: 300px;
   display: ${(props) => (props.menuId === 1 ? "block" : "none")};
   height: 100%;
   background-color: rgb(26, 26, 26);
